@@ -76,27 +76,3 @@ type address struct {
 	Zip5         string
 	Zip4         string
 }
-
-type ZipCodeLookupRequest struct{}
-
-func (r ZipCodeLookupRequest) Validate() error {
-	return nil
-}
-
-type ZipCodeLookupResponse struct{}
-
-func (c *USPSClient) ZipLookup(req *ZipCodeLookupRequest) (*ZipCodeLookupResponse, error) {
-	return nil, nil
-}
-
-type CityStateLookupRequest struct{}
-
-func (r CityStateLookupRequest) Validate() error {
-	return nil
-}
-
-type CityStateLookupResponse struct{}
-
-func (c *USPSClient) CityStateLookup(req *CityStateLookupRequest) (*CityStateLookupResponse, error) {
-	return nil, nil
-}

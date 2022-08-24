@@ -74,16 +74,12 @@ type ValidateAddressResponse struct {
 	Err       *XMLError
 }
 
-func ValidateAddressErrorRes(err *XMLError) *ValidateAddressResponse {
+func validateAddressErrorRes(err *XMLError) *ValidateAddressResponse {
 	return &ValidateAddressResponse{Err: err}
 }
 
-func ValidateAddressSuccessRes(addrs []ValidatedAddress) *ValidateAddressResponse {
+func validateAddressSuccessRes(addrs []ValidatedAddress) *ValidateAddressResponse {
 	return &ValidateAddressResponse{Addresses: addrs}
-}
-
-func (res *ValidateAddressResponse) IsError() bool {
-	return res.Err != nil
 }
 
 func (res *ValidateAddressResponse) GetError() error {
@@ -159,9 +155,9 @@ func (c *USPSClient) ValidateAddress(ctx context.Context, req *ValidateAddressRe
 
 	// Check for errors
 	if res.XMLError != nil {
-		return ValidateAddressErrorRes(res.XMLError), nil
+		return validateAddressErrorRes(res.XMLError), nil
 	}
 
 	// Return success!
-	return ValidateAddressSuccessRes(res.Address), nil
+	return validateAddressSuccessRes(res.Address), nil
 }
